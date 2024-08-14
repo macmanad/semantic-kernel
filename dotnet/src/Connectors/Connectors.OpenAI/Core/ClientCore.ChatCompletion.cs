@@ -649,6 +649,7 @@ internal partial class ClientCore
             IncludeLogProbabilities = executionSettings.Logprobs,
             ResponseFormat = GetResponseFormat(executionSettings) ?? ChatResponseFormat.Text,
             ToolChoice = toolCallingConfig.Choice,
+            ParallelToolCallsEnabled = toolCallingConfig.Tools is { Count: > 0 } ? false : null
         };
 
         if (toolCallingConfig.Tools is { Count: > 0 } tools)
