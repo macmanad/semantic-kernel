@@ -670,6 +670,7 @@ internal partial class ClientCore
         if (toolCallingConfig.Tools is { Count: > 0 } tools)
         {
             options.Tools.AddRange(tools);
+            options.ParallelToolCallsEnabled = false;
         }
 
         if (executionSettings.TokenSelectionBiases is not null)
