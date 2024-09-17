@@ -388,7 +388,8 @@ internal abstract class ClientCore
 
         for (int requestIndex = 1; ; requestIndex++)
         {
-            if (!autoInvoke)
+            // If not autoinvoke, and a tool choice is set, set to none to not loop
+            if (!autoInvoke && chatOptions.ToolChoice != null)
             {
                 chatOptions.ToolChoice = ChatCompletionsToolChoice.None;
             }
