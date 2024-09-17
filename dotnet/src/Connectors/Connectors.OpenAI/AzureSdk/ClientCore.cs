@@ -388,6 +388,11 @@ internal abstract class ClientCore
 
         for (int requestIndex = 1; ; requestIndex++)
         {
+            if (!autoInvoke)
+            {
+                chatOptions.ToolChoice = ChatCompletionsToolChoice.None;
+            }
+
             // Make the request.
             ChatCompletions? responseData = null;
             List<OpenAIChatMessageContent> responseContent;
