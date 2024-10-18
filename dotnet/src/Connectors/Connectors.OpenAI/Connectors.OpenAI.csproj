@@ -32,10 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\SemanticKernel.Core\SemanticKernel.Core.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="OpenAI" />
+    <PackageReference Include="Microsoft.SemanticKernel.Core" />
   </ItemGroup>
 </Project>
