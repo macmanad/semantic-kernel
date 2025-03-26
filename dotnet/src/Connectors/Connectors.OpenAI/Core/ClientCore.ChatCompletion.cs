@@ -19,6 +19,9 @@ using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Diagnostics;
 using Microsoft.SemanticKernel.Text;
 using OpenAI.Chat;
+using ChatFinishReason = OpenAI.Chat.ChatFinishReason;
+using ChatMessage = OpenAI.Chat.ChatMessage;
+using ChatResponseFormat = OpenAI.Chat.ChatResponseFormat;
 using OpenAIChatCompletion = OpenAI.Chat.ChatCompletion;
 
 #pragma warning disable CA2208 // Instantiate argument exceptions correctly

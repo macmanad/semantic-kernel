@@ -10,7 +10,7 @@ namespace Microsoft.SemanticKernel;
 /// </summary>
 public class DocumentContent : BinaryContent
 {
-    public string Filename { get; init; }
+    public string Filename { get; set; }
 
     /// <summary>
     /// Initializes a new instance of the <see cref="DocumentContent"/> class.
