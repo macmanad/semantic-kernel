@@ -13,6 +13,7 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using Microsoft.Extensions.AI;
 using Microsoft.Extensions.Logging;
 using Microsoft.SemanticKernel.ChatCompletion;
 using Microsoft.SemanticKernel.Diagnostics;
@@ -764,6 +765,7 @@ internal partial class ClientCore
                     {
                         TextContent textContent => ChatMessageContentPart.CreateTextPart(textContent.Text),
                         ImageContent imageContent => GetImageContentItem(imageContent),
+                        DocumentContent documentContent => GetDocumentContentItem(documentContent),
                         _ => throw new NotSupportedException($"Unsupported chat message content type '{item.GetType()}'.")
                     }))
                 { ParticipantName = message.AuthorName }
@@ -885,6 +887,16 @@ internal partial class ClientCore
         }
 
         return null;
+    }
+
+    private static ChatMessageContentPart GetDocumentContentItem(DocumentContent documentContent)
+    {
+        if (documentContent.Data is { IsEmpty: false } data)
+        {
+            return ChatMessageContentPart.CreateFilePart(BinaryData.FromBytes(data), documentContent.MimeType, documentContent.Filename);
+        }
+
+        throw new ArgumentException($"{nameof(documentContent)} must have Data.");
     }
 
     private OpenAIChatMessageContent CreateChatMessageContent(OpenAIChatCompletion completion, string targetModel)
